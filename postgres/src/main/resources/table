@@ -1,0 +1,4 @@
+# These Commands For Postgres DataBase copy commands and run on postgres query editor
+create table department(id SERIAL PRIMARY KEY, name VARCHAR, description VARCHAR);
+create table teacher(id SERIAL PRIMARY KEY, name VARCHAR, email VARCHAR, address VARCHAR,
+ dept_id INTEGER REFERENCES department(id));
