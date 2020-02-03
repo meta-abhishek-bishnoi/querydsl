@@ -58,6 +58,16 @@ public class TeacherDetails {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "TeacherDetails{" +
+				"teacherId=" + teacherId +
+				", teacherName='" + teacherName + '\'' +
+				", email='" + email + '\'' +
+				", address='" + address + '\'' +
+				", departmentId=" + departmentId +
+				", departmentName='" + departmentName + '\'' +
+				'}';
+	}
 }

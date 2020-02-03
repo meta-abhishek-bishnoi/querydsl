@@ -88,8 +88,16 @@ public class Teacher implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Teacher{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", address='" + address + '\'' +
+				", departmentId=" + departmentId +
+				", department=" + department +
+				'}';
+	}
 }

@@ -6,6 +6,8 @@
 
  import javax.persistence.EntityManager;
 
+ import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.Logger;
  import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.stereotype.Service;
  import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +16,8 @@
  import com.metacube.jpa.postgres.model.Department;
  import com.metacube.jpa.postgres.model.QDepartment;
  import com.metacube.jpa.postgres.model.QTeacher;
- import com.metacube.jpa.postgres.model.Teacher;
  import com.metacube.jpa.postgres.model.pojo.DepartmentPojo;
  import com.metacube.jpa.postgres.model.pojo.TeacherDetails;
- import com.metacube.jpa.postgres.model.pojo.TeacherPojo;
  import com.metacube.jpa.postgres.repository.DepartmentReposirty;
  import com.querydsl.core.types.Projections;
  import com.querydsl.jpa.JPAQueryBase;
@@ -34,7 +34,7 @@
  	/**
  	 *
  	 */
-
+	private static final Logger logger = LogManager.getLogger(DepartmentService.class);
  	public List<DepartmentPojo> getAllDepartments()
      {
  		QDepartment qdepartment = QDepartment.department;
@@ -46,8 +46,10 @@
  				).from(qdepartment);
  		List<DepartmentPojo> listDepartments = query.fetch();
  		if (listDepartments.size() > 0) {
+ 			logger.info("{}",listDepartments.toString());
  			return listDepartments;
  		} else {
+ 			logger.warn("No Result Found");
  			return new ArrayList<DepartmentPojo>();
  		}
      }
@@ -57,9 +59,12 @@
 
  		if (department.isPresent()) {
  			Department dept = department.get();
+ 			logger.info("{}",dept.getId()+" -- "+dept.getName());
  			return new DepartmentPojo(dept.getId(), dept.getName(), dept.getDescription());
  		} else {
- 			throw new RecordNotFoundException("No Department record exist for given id", id);
+			RecordNotFoundException e = new RecordNotFoundException("No Department record exist for given id", id);
+ 			logger.error("Exception {}", e);
+ 			throw e;
  		}
  	}
 

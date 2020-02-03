@@ -25,6 +25,7 @@
  @Controller
  @RequestMapping("/department")
  public class DepartmentController {
+
  	@Autowired
      DepartmentService service;
  

@@ -72,7 +72,14 @@ public class Department implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-		
+
+	@Override
+	public String toString() {
+		return "Department{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", description='" + description + '\'' +
+				", teachers=" + teachers +
+				'}';
+	}
 }

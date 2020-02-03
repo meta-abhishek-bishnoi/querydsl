@@ -47,6 +47,15 @@ public class TeacherPojo {
 	public TeacherPojo() {
 		super();
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "TeacherPojo{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", email='" + email + '\'' +
+				", address='" + address + '\'' +
+				", deptId=" + deptId +
+				'}';
+	}
 }
